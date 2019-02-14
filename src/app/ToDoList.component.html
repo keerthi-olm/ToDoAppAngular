@@ -1,0 +1,38 @@
+<ul id="todo_widget" >
+  <li class="header">
+    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/375px-Angular_full_color_logo.svg.png' class='logo' />
+    <h2 class="title">My to do list</h2></li>
+  <li class="add_reset_section new_item">
+    <input
+      type="text"
+      #newItem
+      class="form-control"
+      placeholder="Add a new task..."
+      name="newItem"
+     
+    />
+  </li>
+  <li class="button add">
+    <button (click)="_handleAddItem(newItem)">Add</button>
+  </li>
+  <li class="button reset">
+    <button (click)="_handleResetList($event)">Reset</button>
+  </li>
+
+  <li class="todo_item" *ngFor="let item of list; let i = index" >
+  
+    <input
+      class="checkbox"
+      type="checkbox"
+      [checked]='isChecked(item,i)'
+      [attr.id]="i"
+      (click)="_handleUpdateDoneList($event,i)"
+    />
+
+    <span>{{ item }}</span>
+  </li>
+
+  <li class="footer">
+    <button class="remove" (click)="_handleRemoveDoneItems($event)">Remove</button>
+  </li>
+</ul>
